@@ -11,34 +11,35 @@ TITLE = "yahya@github"
 # (key, value). An empty key continues the row above.
 ROWS = [
     ("Name", "Mohammed Yahiya Khan"),
-    ("Base", "Birmingham, UK"),
+    ("Role", "Cybersecurity Analyst, SOC & Threat Detection"),
+    ("Base", "United Kingdom"),
     ("MSc", "Cybersecurity, Coventry University (2025-2026)"),
-    ("Exp", "Security Analyst, Cognizant (2023-2025)"),
+    ("Exp", "Cyber Security Analyst, Cognizant (2023-2025)"),
     ("BTech", "CSE (AI-ML), SR University (2019-2023)"),
     None,
-    ("SIEM", "QRadar, Splunk"),
-    ("Network", "Zeek, MITRE ATT&CK"),
-    ("Pentest", "Kali Linux, Metasploit"),
+    ("SOC", "QRadar, IDS/IPS, FIM, Wireshark, MITRE ATT&CK"),
+    ("Detect", "Zeek, NetFlow, Sysmon, Splunk, Elastic Stack"),
+    ("Pentest", "Kali Linux, Nmap, Metasploit, SQLMap"),
+    ("DFIR", "Autopsy, FTK Imager"),
     ("Crypto", "ChaCha20, Ed25519"),
-    ("Web", "Next.js, React, TypeScript"),
+    ("Build", "Python, FastAPI, Next.js, Playwright, MySQL"),
     None,
     ("Projects", "LLM Security Testing Framework (dissertation)"),
     ("", "Insider Threat Detection System"),
     ("", "Secure Contract Exchange Protocol"),
-    ("", "SME penetration testing"),
+    ("", "SME network penetration test"),
     ("", "IoT forensics research"),
-    ("", "PixelForge Nexus, secure project mgmt app"),
+    ("", "BERT disaster classifier (97.99% precision)"),
     None,
-    ("Certs", "Azure AI Fundamentals"),
-    ("", "Cisco Cybersecurity Essentials"),
-    ("Studying", "CompTIA Security+, Microsoft AZ-104"),
-    None,
+    ("Certs", "Azure AI Fundamentals, Intro to IoT"),
+    ("", "Cybersecurity Essentials, Data Analytics"),
+    ("", "Developing Front-End Apps with React"),
     ("LinkedIn", "linkedin.com/in/yahiyakhhan"),
 ]
 
 WIDTH, HEIGHT = 460, 480  # same height as the portrait so the two columns line up
 PAD_X, FONT_SIZE, KEY_W = 18, 12.5, 74
-LINE, GAP = 17.5, 8
+LINE, GAP = 16.5, 8
 
 BG, BORDER, TITLE_C, KEY, VALUE, RULE = "#0d1117", "#30363d", "#39d353", "#39d353", "#c9d1d9", "#30363d"
 SWATCHES = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353", "#69f0a0", "#8b949e", "#c9d1d9"]
