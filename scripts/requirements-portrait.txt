@@ -1,0 +1,6 @@
+# Only needed locally, when the photo changes.
+pillow
+numpy
+opencv-python-headless
+rembg
+onnxruntime

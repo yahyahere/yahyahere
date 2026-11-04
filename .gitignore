@@ -1,0 +1,5 @@
+.venv/
+__pycache__/
+# Keep the original photo out of a public repo. Only the ASCII SVG is published.
+source-photo.*
+source-prepped.png
