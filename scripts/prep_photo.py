@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Prepare a photo for ASCII conversion.
 
-Usage: python scripts/prep_photo.py source-photo.jpg
+Usage: python scripts/prep_photo.py source-photo.jpg [left,top,right,bottom]
+The optional box crops the photo first, in pixels of the original image.
 
 1. Remove the background with rembg (u2net, about 170 MB, downloaded on first run).
 2. Lift local contrast with CLAHE so a flat face gets real highlights and shadows.
@@ -18,14 +19,19 @@ from PIL import Image, ImageOps
 from rembg import new_session, remove
 
 MAX_SIDE = 1200
+GAMMA = 0.7  # below 1 lifts dark hair and clothes so they still print on the dark panel
 
 
 def main() -> None:
-    if len(sys.argv) != 2:
-        sys.exit("usage: prep_photo.py <photo>")
+    if len(sys.argv) not in (2, 3):
+        sys.exit("usage: prep_photo.py <photo> [left,top,right,bottom]")
 
     img = ImageOps.exif_transpose(Image.open(sys.argv[1])).convert("RGB")
-    img.thumbnail((MAX_SIDE, MAX_SIDE))
+    if len(sys.argv) == 3:
+        img = img.crop(tuple(int(v) for v in sys.argv[2].split(",")))
+    # Upscale small crops too, so the background removal has enough detail to work with.
+    scale = MAX_SIDE / max(img.size)
+    img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
 
     alpha = np.asarray(remove(img, session=new_session("u2net")).convert("RGBA"))[:, :, 3].astype(np.float32) / 255.0
     gray = np.asarray(img.convert("L"))
@@ -39,6 +45,7 @@ def main() -> None:
 
     clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
     boosted = clahe.apply(stretched).astype(np.float32)
+    boosted = 255.0 * (boosted / 255.0) ** GAMMA
 
     out = (boosted * alpha).astype(np.uint8)
 

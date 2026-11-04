@@ -10,7 +10,7 @@ import sys
 from xml.sax.saxutils import escape
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 RAMP = " .`:-=+*cs#%@"  # dark (blank) -> bright (dense), for light glyphs on a dark panel
 
@@ -41,7 +41,11 @@ def to_rows(path: str) -> tuple[list[str], float, float]:
         cols = round(COLS * max_rows / rows)
         rows = max_rows
 
-    small = np.asarray(img.resize((cols, rows), Image.LANCZOS), dtype=np.float32) / 255.0
+    # Light sharpening so eyes and glasses survive the shrink. Much more leaves a halo around the head.
+    img = img.filter(ImageFilter.UnsharpMask(radius=max(img.width // 150, 2), percent=70, threshold=2))
+    img = img.resize((cols, rows), Image.LANCZOS)
+    small = np.asarray(img, dtype=np.float32) / 255.0
+    small = small ** 1.1  # keep midtones sparse so the face stands out from the clothes
     idx = np.clip((small * len(RAMP)).astype(int), 0, len(RAMP) - 1)
     left = " " * ((COLS - cols) // 2)
     lines = [left + "".join(RAMP[i] for i in row).rstrip() for row in idx]
