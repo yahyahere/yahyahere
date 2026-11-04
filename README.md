@@ -9,7 +9,7 @@
 <table>
   <tr>
     <td valign="top"><img src="./ascii-portrait.svg" width="300" alt="ASCII portrait" /></td>
-    <td valign="top"><a href="https://www.linkedin.com/in/yahiyakhhan"><img src="./info-card.svg" width="425" alt="Mohammed Yahiya Khan. Cybersecurity Analyst, SOC and Threat Detection, MSc Cybersecurity, ex-Cognizant." /></a></td>
+    <td valign="top"><img src="./info-card.svg" width="425" alt="Mohammed Yahiya Khan. Cybersecurity Analyst, SOC and Threat Detection, MSc Cybersecurity, ex-Cognizant." /></td>
   </tr>
 </table>
 
